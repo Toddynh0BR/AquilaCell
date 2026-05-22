@@ -5,7 +5,7 @@ flex: 1;
 height: fit-content;
 
 border-bottom: 1px solid #181C24;
-padding: 0 25px;
+padding: 0 30px;
 
 .Desktop, .Mobile {
  height: 65px;
