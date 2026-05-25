@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.button`
  width: fit-content;
  height: 50px;
 
  background-color: #005AE5;
+ outline: none;
+ border: none;
  border-radius: 8px;
  overflow: hidden;
 
@@ -69,7 +71,7 @@ import { ArrowRightIcon } from '@phosphor-icons/react';
 
 export function Button({text, ...rest}) {
     return(
-     <Container>
+     <Container {...rest}>
       <span>{text}</span>
       <div className="set">
        <ArrowRightIcon weight="bold" color="#fff"/>

@@ -259,8 +259,7 @@ export function Home() {
         TECNOLOGIA QUE CONECTA,
       </h2>
       <h1>
-        QUALIDADE QUE <br />
-        TRANSFORMA<strong>.</strong>
+        QUALIDADE QUE TRANSFORMA<strong>.</strong>
       </h1>
       <p>
        Smartphones, eletrônicos, acessórios e muito mais <br/>
@@ -303,6 +302,41 @@ export function Home() {
 
      </div>
      <img src="/MainImage.png" alt="" id='MainImage'/>
+     <div className="mobileTexts">
+       <div className="icons">
+        <div className="icon">
+          <img src="/ICON1.png" alt="" />
+          <span>
+            Entrega rápida<br />
+           <p>
+            direto na sua casa
+           </p>
+          </span>
+        </div>
+
+        <div className="icon">
+          <img src="/ICON2.png" alt="" />
+          <span>
+            Garantia de até<br />
+           <p>
+            6 meses
+           </p>
+          </span>
+        </div>
+
+        <div className="icon">
+          <img src="/ICON3.png" alt="" />
+          <span>
+            Parcele em até<br />
+           <p>
+            12x sem juros
+           </p>
+          </span>
+        </div>
+       </div>
+
+      <Button text="VER PRODUTOS" />
+     </div>
     </S.Main>
 
     <S.BigImage>
