@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as S from "./styles.js";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,6 +9,8 @@ import 'swiper/css';
 import { Header } from '../../components/header';
 import { SubHeader } from '../../components/subHeader';
 import { Button } from '../../components/button/index';
+import { MiniButton } from '../../components/miniButton';
+import { Footer } from '../../components/footer';
 
 const baseUrl =
   typeof window !== 'undefined'
@@ -18,168 +20,233 @@ const baseUrl =
 const products = [
   {
     id: 1,
-    img: `${baseUrl}/iphone.png`,
+    img: `${baseUrl}/products/iphone.svg`,
     nome: 'Iphone 17',
     preço: 'R$ 9.999,99',
     variacao: 'Titanium',
-    credit: '10X de 999,99 sem juros'
+    credit: '10X de 999,99 sem juros',
+    avaliations: 300
   },
   {
     id: 2,
-    img: `${baseUrl}/ps5.png`,
+    img: `${baseUrl}/products/ps5.svg`,
     nome: 'PlayStation 5',
     preço: 'R$ 4.799,99',
     variacao: 'Slim Digital',
-    credit: '10X de 479,99 sem juros'
+    credit: '10X de 479,99 sem juros',
+    avaliations: 45
   },
   {
     id: 3,
-    img: `${baseUrl}/headset.png`,
+    img: `${baseUrl}/products/headset.svg`,
     nome: 'Headset Gamer',
     preço: 'R$ 599,99',
     variacao: 'RGB Wireless',
-    credit: '10X de 59,99 sem juros'
+    credit: '10X de 59,99 sem juros',
+    avaliations: 60
   },
   {
     id: 4,
-    img: `${baseUrl}/smartwatch.png`,
+    img: `${baseUrl}/products/sw.svg`,
     nome: 'Smartwatch Ultra',
     preço: 'R$ 1.299,99',
     variacao: 'Black Edition',
-    credit: '10X de 129,99 sem juros'
+    credit: '10X de 129,99 sem juros',
+    avaliations: 5
   },
   {
     id: 5,
-    img: `${baseUrl}/jbl.png`,
+    img: `${baseUrl}/products/jbl.svg`,
     nome: 'JBL Charge 6',
     preço: 'R$ 899,99',
     variacao: 'Bluetooth',
-    credit: '10X de 89,99 sem juros'
+    credit: '10X de 89,99 sem juros',
+    avaliations: 32
   },
-  {
-    id: 6,
-    img: `${baseUrl}/notebook.png`,
-    nome: 'Notebook Gamer',
-    preço: 'R$ 6.499,99',
-    variacao: 'RTX 4060',
-    credit: '10X de 649,99 sem juros'
-  },
-  {
-    id: 7,
-    img: `${baseUrl}/mouse.png`,
-    nome: 'Mouse Gamer',
-    preço: 'R$ 249,99',
-    variacao: 'Wireless RGB',
-    credit: '10X de 24,99 sem juros'
-  },
-  {
-    id: 8,
-    img: `${baseUrl}/keyboard.png`,
-    nome: 'Teclado Mecânico',
-    preço: 'R$ 399,99',
-    variacao: 'Switch Blue',
-    credit: '10X de 39,99 sem juros'
-  },
-  {
-    id: 9,
-    img: `${baseUrl}/monitor.png`,
-    nome: 'Monitor Gamer',
-    preço: 'R$ 1.899,99',
-    variacao: '240Hz Full HD',
-    credit: '10X de 189,99 sem juros'
-  },
-  {
-    id: 10,
-    img: `${baseUrl}/airpods.png`,
-    nome: 'AirPods Pro',
-    preço: 'R$ 2.199,99',
-    variacao: '2ª Geração',
-    credit: '10X de 219,99 sem juros'
-  },
-  {
-    id: 11,
-    img: `${baseUrl}/ipad.png`,
-    nome: 'iPad Pro',
-    preço: 'R$ 8.499,99',
-    variacao: 'M4 256GB',
-    credit: '10X de 849,99 sem juros'
-  },
-  {
-    id: 12,
-    img: `${baseUrl}/camera.png`,
-    nome: 'Câmera Canon',
-    preço: 'R$ 5.999,99',
-    variacao: '4K DSLR',
-    credit: '10X de 599,99 sem juros'
-  },
-  {
-    id: 13,
-    img: `${baseUrl}/xbox.png`,
-    nome: 'Xbox Series X',
-    preço: 'R$ 4.599,99',
-    variacao: '1TB',
-    credit: '10X de 459,99 sem juros'
-  },
-  {
-    id: 14,
-    img: `${baseUrl}/tablet.png`,
-    nome: 'Tablet Samsung',
-    preço: 'R$ 2.799,99',
-    variacao: 'Galaxy Tab S9',
-    credit: '10X de 279,99 sem juros'
-  },
-  {
-    id: 15,
-    img: `${baseUrl}/drone.png`,
-    nome: 'Drone 4K',
-    preço: 'R$ 3.999,99',
-    variacao: 'GPS Edition',
-    credit: '10X de 399,99 sem juros'
-  },
-  {
-    id: 16,
-    img: `${baseUrl}/tv.png`,
-    nome: 'Smart TV LG',
-    preço: 'R$ 3.499,99',
-    variacao: '55 Polegadas 4K',
-    credit: '10X de 349,99 sem juros'
-  },
-  {
-    id: 17,
-    img: `${baseUrl}/speaker.png`,
-    nome: 'Caixa de Som JBL',
-    preço: 'R$ 1.199,99',
-    variacao: 'PartyBox Mini',
-    credit: '10X de 119,99 sem juros'
-  },
-  {
-    id: 18,
-    img: `${baseUrl}/vr.png`,
-    nome: 'Meta Quest 3',
-    preço: 'R$ 4.299,99',
-    variacao: '128GB VR',
-    credit: '10X de 429,99 sem juros'
-  },
-  {
-    id: 19,
-    img: `${baseUrl}/macbook.png`,
-    nome: 'MacBook Air',
-    preço: 'R$ 11.499,99',
-    variacao: 'M3 512GB',
-    credit: '10X de 1.149,99 sem juros'
-  },
-  {
-    id: 20,
-    img: `${baseUrl}/smartphone.png`,
-    nome: 'Galaxy S26 Ultra',
-    preço: 'R$ 7.999,99',
-    variacao: '512GB Titanium',
-    credit: '10X de 799,99 sem juros'
-  }
+ {
+  id: 6,
+  img: `${baseUrl}/products/pngwing.com.png`,
+  nome: 'Notebook Gamer',
+  preço: 'R$ 6.499,99',
+  variacao: 'RTX 4060',
+  credit: '10X de 649,99 sem juros',
+  avaliations: 12
+},
+{
+  id: 7,
+  img: `${baseUrl}/products/pngwing.com (1).png`,
+  nome: 'Mouse Gamer',
+  preço: 'R$ 249,99',
+  variacao: 'Wireless RGB',
+  credit: '10X de 24,99 sem juros',
+  avaliations: 121
+},
+{
+  id: 8,
+  img: `${baseUrl}/products/pngwing.com (2).png`,
+  nome: 'Teclado Mecânico',
+  preço: 'R$ 399,99',
+  variacao: 'Switch Blue',
+  credit: '10X de 39,99 sem juros',
+  avaliations: 122
+},
+{
+  id: 9,
+  img: `${baseUrl}/products/pngwing.com (3).png`,
+  nome: 'Monitor Gamer',
+  preço: 'R$ 1.899,99',
+  variacao: '240Hz Full HD',
+  credit: '10X de 189,99 sem juros',
+  avaliations: 40
+},
+{
+  id: 10,
+  img: `${baseUrl}/products/pngwing.com (4).png`,
+  nome: 'AirPods Pro',
+  preço: 'R$ 2.199,99',
+  variacao: '2ª Geração',
+  credit: '10X de 219,99 sem juros',
+  avaliations: 110
+},
+{
+  id: 11,
+  img: `${baseUrl}/products/pngwing.com (5).png`,
+  nome: 'iPad Pro',
+  preço: 'R$ 8.499,99',
+  variacao: 'M4 256GB',
+  credit: '10X de 849,99 sem juros',
+  avaliations: 80
+},
+{
+  id: 12,
+  img: `${baseUrl}/products/pngwing.com (6).png`,
+  nome: 'Câmera Canon',
+  preço: 'R$ 5.999,99',
+  variacao: '4K DSLR',
+  credit: '10X de 599,99 sem juros',
+  avaliations: 60
+},
+{
+  id: 13,
+  img: `${baseUrl}/products/pngwing.com (7).png`,
+  nome: 'Xbox Series X',
+  preço: 'R$ 4.599,99',
+  variacao: '1TB',
+  credit: '10X de 459,99 sem juros',
+  avaliations: 50
+},
+{
+  id: 14,
+  img: `${baseUrl}/products/pngwing.com (8).png`,
+  nome: 'Tablet Samsung',
+  preço: 'R$ 2.799,99',
+  variacao: 'Galaxy Tab S9',
+  credit: '10X de 279,99 sem juros',
+  avaliations: 21
+},
+{
+  id: 15,
+  img: `${baseUrl}/products/pngwing.com (9).png`,
+  nome: 'Drone 4K',
+  preço: 'R$ 3.999,99',
+  variacao: 'GPS Edition',
+  credit: '10X de 399,99 sem juros',
+  avaliations: 12
+},
+{
+  id: 16,
+  img: `${baseUrl}/products/pngwing.com (10).png`,
+  nome: 'Smart TV LG',
+  preço: 'R$ 3.499,99',
+  variacao: '55 Polegadas 4K',
+  credit: '10X de 349,99 sem juros',
+  avaliations: 130
+},
+{
+  id: 17,
+  img: `${baseUrl}/products/pngwing.com (11).png`,
+  nome: 'Caixa de Som JBL',
+  preço: 'R$ 1.199,99',
+  variacao: 'PartyBox Mini',
+  credit: '10X de 119,99 sem juros',
+  avaliations: 10
+},
+{
+  id: 18,
+  img: `${baseUrl}/products/Meta-Quest-3-PNG.png`,
+  nome: 'Meta Quest 3',
+  preço: 'R$ 4.299,99',
+  variacao: '128GB VR',
+  credit: '10X de 429,99 sem juros',
+  avaliations: 120
+},
+{
+  id: 19,
+  img: `${baseUrl}/products/pngwing.com (12).png`,
+  nome: 'MacBook Air',
+  preço: 'R$ 11.499,99',
+  variacao: 'M3 512GB',
+  credit: '10X de 1.149,99 sem juros',
+  avaliations: 120
+},
+{
+  id: 20,
+  img: `${baseUrl}/products/pngwing.com (13).png`,
+  nome: 'Galaxy S26 Ultra',
+  preço: 'R$ 7.999,99',
+  variacao: '512GB Titanium',
+  credit: '10X de 799,99 sem juros',
+  avaliations: 120
+}
 ]
 
 export function Home() {
+  const [windowW, setWidowW] = useState(window.innerWidth);
+  const [SlidesN, setSlidesN] = useState(0);
 
+  useEffect(()=> {
+   if (window.innerWidth < 900) {
+    setSlidesN(3)
+   }
+   if (window.innerWidth < 850) {
+    setSlidesN(2.5)
+   }
+   if (window.innerWidth < 750) {
+    setSlidesN(2)
+   }
+   if (window.innerWidth <= 500) {
+    setSlidesN(1.5)
+   }
+
+
+   if (window.innerWidth > 1000) {
+    setSlidesN(3.5)
+   }
+   if (window.innerWidth > 1100) {
+    setSlidesN(4)
+   }
+   if (window.innerWidth > 1200) {
+    setSlidesN(4.5)
+   }
+   if (window.innerWidth > 1450) {
+    setSlidesN(5)
+   }
+   if (window.innerWidth > 1500) {
+    setSlidesN(5.5)
+   }
+   if (window.innerWidth > 1600) {
+    setSlidesN(6)
+   }
+   if (window.innerWidth > 1700) {
+    setSlidesN(7)
+   }
+  }, [windowW]);
+
+  window.addEventListener('resize', () => {
+    console.log(`Novo tamanho: ${window.innerWidth}x${window.innerHeight}`);
+
+    setWidowW(window.innerWidth);
+  });
 
   return (
    <S.Container>
@@ -349,12 +416,45 @@ export function Home() {
      
        <div className="products">
         <Swiper  
+        style={{overflow: 'visible'}}
+        loop={true}
         spaceBetween={15}
-      slidesPerView={5.5}>
+        slidesPerView={SlidesN}>
         {products.map((item)=> (
-         <SwiperSlide>
+         <SwiperSlide >
           <div className="product">
-            {item.nome}
+            <img src={item.img} alt="" />
+
+            <p>
+             {item.nome} <br/>
+             <strong>{item.variacao}</strong>
+            </p>
+
+            <div className="stars">
+              {new Array(5).fill(0).map((index)=> (
+<svg key={index} width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_15_142)">
+<path d="M9.15193 4.48637L7.39412 6.00317L7.92966 8.27153C7.95921 8.39467 7.9516 8.5238 7.9078 8.64262C7.86399 8.76143 7.78595 8.8646 7.68354 8.93909C7.58113 9.01358 7.45895 9.05604 7.33241 9.06112C7.20588 9.0662 7.08068 9.03366 6.97263 8.96762L4.99998 7.75356L3.02615 8.96762C2.91811 9.03328 2.79306 9.06551 2.66675 9.06024C2.54043 9.05498 2.4185 9.01246 2.3163 8.93803C2.21411 8.86361 2.13622 8.76061 2.09244 8.64201C2.04866 8.52341 2.04095 8.3945 2.07029 8.27153L2.60779 6.00317L0.849976 4.48637C0.754389 4.40376 0.685259 4.29482 0.651219 4.17315C0.617179 4.05148 0.619737 3.92248 0.658575 3.80226C0.697413 3.68204 0.770809 3.57592 0.869596 3.49716C0.968384 3.4184 1.08818 3.3705 1.21404 3.35942L3.51873 3.17348L4.40779 1.02192C4.45591 0.90466 4.53782 0.804359 4.64309 0.733769C4.74836 0.663179 4.87225 0.625488 4.999 0.625488C5.12575 0.625488 5.24964 0.663179 5.35491 0.733769C5.46018 0.804359 5.54209 0.90466 5.59021 1.02192L6.47888 3.17348L8.78357 3.35942C8.90967 3.37008 9.02982 3.41772 9.12897 3.49637C9.22812 3.57502 9.30185 3.68118 9.34093 3.80155C9.38001 3.92192 9.3827 4.05114 9.34866 4.17303C9.31462 4.29492 9.24537 4.40406 9.14958 4.48676L9.15193 4.48637Z" fill="#D8A207"/>
+</g>
+<defs>
+<clipPath id="clip0_15_142">
+<rect width="10" height="10" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+              ))}
+              <span>({item.avaliations})</span>
+            </div>
+
+            <div className="buy">
+             <h4>
+              {item.preço} <br/>
+              <h5>{item.credit}</h5>
+             </h4>
+
+             <MiniButton/>
+            </div>
           </div>
          </SwiperSlide>  
         ))}
@@ -362,6 +462,12 @@ export function Home() {
        </div>
      
     </S.Products>
+
+    <S.ImageBar>
+      <img src={window.innerWidth > 750 ? `${baseUrl}/Bar.svg` : `${baseUrl}/BarMobile.svg`} alt="" />
+    </S.ImageBar>
+
+    <Footer/>
    </S.Container>
   )
 }

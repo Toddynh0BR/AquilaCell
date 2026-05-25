@@ -12,7 +12,7 @@ justify-content: space-between;
 display: flex;
 gap: 50px;
 
-padding: 50px 30px 0px 30px;
+padding: 50px 50px 0px 50px;
 
 .texts {
  width: 50%;
@@ -83,6 +83,10 @@ padding: 50px 30px 0px 30px;
  object-fit: contain;
  margin-top: -100px;
 }
+
+@media (max-width: 900px) {
+  
+}
 `
 
 export const BigImage = styled.div`
@@ -90,7 +94,7 @@ flex: 1;
 height: fit-content;
 
 justify-content: center;
-padding: 0 30px;
+padding: 0 50px;
 display: flex;
 
 margin-top: -90px;
@@ -106,7 +110,6 @@ main {
  padding-right: 10px;
  overflow: hidden;
 
- justify-content: space-between;
  align-items: center;
  display: flex;
 
@@ -120,11 +123,12 @@ main {
  .part1 {
   justify-content: center;
   flex-direction: column;
+  align-items: flex-start;
   display: flex;
   gap: 5px;
 
   height: 95%;
-  width: 30%;
+  width: 40%;
 
   border-right: 1px solid #A6A9AE;
   padding: 0 15px 0 10px;
@@ -216,8 +220,9 @@ export const Products = styled.div`
 flex: 1;
 height: fit-content;
 
+margin-bottom: 40px;
 margin-top: 50px;
-padding: 0 30px;
+padding: 0 50px;
 
 flex-direction: column;
 display: flex;
@@ -243,7 +248,7 @@ h2 {
 }
 
 .product {
- height: 272px;
+ height: 280px;
  width: 215px;
 
  background-color: #0C1119;
@@ -254,5 +259,90 @@ h2 {
  flex-direction: column;
  align-items: center;
  display: flex;
+
+ img {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+ }
+
+ p {
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: bold;
+  text-align: left;
+  font-size: 16px;
+  color: #fff;
+
+  margin-bottom: 10px;
+  width: 100%;
+  
+  strong {
+   font-size: 14px;
+   font-weight: 400;
+   color: #A6A9AE;
+  }
+ }
+
+ .stars {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  gap: 1px;
+
+  margin-bottom: 10px;
+  
+  span {
+    font-family: 'Host Grotesk', sans-serif;
+    color: #A6A9AE;
+    font-weight: 300;
+    font-size: 12px;
+
+    margin-left: 1px;
+  }
+ }
+
+ .buy {
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+  
+  h4 {
+   font-family: 'Host Grotesk';
+   font-weight: bolder;
+   font-size: 16px;
+   color: #fff;
+
+   h5 {
+     font-weight: 500;
+     color: #A6A9AE;
+     font-size: 12px;
+   }
+  }
+ }
+
+ transition: all.3s ease-in-out;
+
+ &:hover {
+  filter: brightness(80%);
+  transform: scale(103%);
+  cursor: pointer;
+ }
+}
+`
+
+export const ImageBar = styled.div`
+flex: 1;
+height: fit-content;
+
+margin: 0 50px 40px;
+
+img {
+ height: auto;
+ width: 100%;
+
+ object-fit: contain;
 }
 `

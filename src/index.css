@@ -21,3 +21,9 @@ body {
 a {
  text-decoration: none;
 }
+
+@media (min-width: 1800px) {
+  body {
+    zoom: 110%;
+  }
+}

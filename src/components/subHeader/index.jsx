@@ -5,7 +5,7 @@ flex: 1;
 height: fit-content;
 
 border-bottom: 1px solid #181C24;
-padding: 0 30px;
+padding: 0 50px;
 
 .Desktop, .Mobile {
  height: 65px;
@@ -46,7 +46,7 @@ padding: 0 30px;
  display: none;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 900px) {
  padding: 0 10px;
 
  .Desktop {
