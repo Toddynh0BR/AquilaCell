@@ -101,12 +101,12 @@ const categories = [
 import { InputSearch } from '../inputSearch';
 import { MiniButton } from '../miniButton';
 
-export function SubHeader() {
+export function SubHeader({onClickF}) {
     return(
      <Container>
       <ul className="Desktop">
        {categories.map((item, index)=> (
-        <li key={index}>
+        <li key={index} onClick={()=> onClickF()}>
          <img src={item.icon} alt="icon" />
          {item.name}
         </li>

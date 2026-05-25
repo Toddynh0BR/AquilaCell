@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import * as S from "./styles.js";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -203,6 +203,7 @@ const products = [
 export function Home() {
   const [windowW, setWidowW] = useState(window.innerWidth);
   const [SlidesN, setSlidesN] = useState(0);
+  const productRef = useRef(null)
 
   useEffect(()=> {
    if (window.innerWidth < 900) {
@@ -228,7 +229,7 @@ export function Home() {
    if (window.innerWidth > 1200) {
     setSlidesN(4.5)
    }
-   if (window.innerWidth > 1450) {
+   if (window.innerWidth > 1350) {
     setSlidesN(5)
    }
    if (window.innerWidth > 1500) {
@@ -248,10 +249,17 @@ export function Home() {
     setWidowW(window.innerWidth);
   });
 
+  function scrollToProduct() {
+    productRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
+
   return (
    <S.Container>
     <Header/>
-    <SubHeader/>
+    <SubHeader onClickF={()=> scrollToProduct()}/>
 
     <S.Main>
      <div className="texts">
@@ -298,7 +306,7 @@ export function Home() {
         </div>
       </div>
 
-      <Button text="VER PRODUTOS" />
+      <Button onClick={scrollToProduct} text="VER PRODUTOS" />
 
      </div>
      <img src="/MainImage.png" alt="" id='MainImage'/>
@@ -374,7 +382,9 @@ export function Home() {
          </li>
         </ul>
 
-        <Button text='SOLICITAR ORÇAMENTO'/>
+              <a target="blank" href="https://wa.me/5581991662040?text=Ol%C3%A1!%20Tenho%20interesse%2C%20gostaria%20de%20saber%20mais.">
+       <Button text="SOLICITAR ORÇAMENTO" />
+      </a>
       </div>
 
       <div className="part2">
@@ -443,7 +453,7 @@ export function Home() {
      </main>
     </S.BigImage>
 
-    <S.Products>
+    <S.Products ref={productRef}>
       <h3>DESTAQUES</h3>
       <h2>Os mais vendidos</h2>
 

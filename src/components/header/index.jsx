@@ -76,9 +76,9 @@ export function Header() {
        </div>
 
        <div className="buttons">
-       <NavLink to="/">
+       <a target="blank" href="https://wa.me/5581991662040?text=Ol%C3%A1!%20Tenho%20interesse%2C%20gostaria%20de%20saber%20mais.">
          <Button text="Solicitar Orçamento"/>
-        </NavLink>
+        </a>
 
         <NavLink to="/">
          <MiniButton />
@@ -89,9 +89,9 @@ export function Header() {
       <div className="Mobile">
        <img src='/icon.svg' alt="ACStore" id="ICON"/>
 
-       <NavLink to="/">
+       <a target="blank" href="https://wa.me/5581991662040?text=Ol%C3%A1!%20Tenho%20interesse%2C%20gostaria%20de%20saber%20mais.">
          <Button text="Solicitar Orçamento"/>
-        </NavLink>
+        </a>
       </div>
      </Container>
     )
