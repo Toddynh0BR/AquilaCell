@@ -59,7 +59,7 @@ gap: 50px;
  }
 }
 `
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 
 import { InputSearch } from "../inputSearch";
 import { MiniButton } from "../miniButton";
@@ -69,7 +69,9 @@ export function Header() {
     return(
      <Container>
       <div className="Desktop">
-       <img src='/icon.svg' alt="ACStore" id="ICON"/>
+       <Link to='/'>
+         <img src='/icon.svg' alt="ACStore" id="ICON"/>
+       </Link>
 
        <div className="inputDiv">
         <InputSearch/>
@@ -80,9 +82,9 @@ export function Header() {
          <Button text="Solicitar Orçamento"/>
         </a>
 
-        <NavLink to="/">
+        <Link to="/">
          <MiniButton />
-        </NavLink>
+        </Link>
        </div>
       </div>
 

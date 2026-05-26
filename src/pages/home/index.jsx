@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import * as S from "./styles.js";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 
 import 'swiper/css';
 
@@ -464,9 +464,10 @@ export function Home() {
         loop={true}
         spaceBetween={15}
         slidesPerView={SlidesN}>
-        {products.map((item)=> (
-         <SwiperSlide >
-          <div className="product">
+        {products.map((item, index)=> (
+          <SwiperSlide key={index}>
+          <Link to={`/product/${item.id}`} >
+           <div className="product">
             <img src={item.img} alt="" />
 
             <p>
@@ -499,8 +500,9 @@ export function Home() {
 
              <MiniButton/>
             </div>
-          </div>
-         </SwiperSlide>  
+           </div>
+          </Link>
+          </SwiperSlide>
         ))}
        </Swiper>
        </div>
